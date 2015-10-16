@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   end
 
   private
-  def genre_params
+  def post_params
     params.require(:post).permit(:name)
   end
 end
