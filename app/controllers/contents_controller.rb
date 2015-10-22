@@ -44,5 +44,5 @@ end
 
 private
 def content_params
-  params.require(:content).permit(:name)
+  params.require(:content).permit(:entry)
 end
