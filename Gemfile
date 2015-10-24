@@ -7,6 +7,7 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.5'
 
 
