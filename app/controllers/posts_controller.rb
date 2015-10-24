@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
-  before_action :find_post, except: [:new, :create, :index]
   before_action :authenticate_user!, except: [:index, :show]
-  
+
   def index
     @posts = Post.all
     render :index
