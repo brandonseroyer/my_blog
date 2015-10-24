@@ -3,20 +3,19 @@
 <% if @post.contents.any? %>
 <ul>
   <% @post.contents.each do |content| %>
-  <li>
-    <%= link_to content.entry, post_content_path(@post, content) %> |
+
+    <%= content.entry %> |
     <%= link_to "Edit", edit_post_content_path(@post, content) %> |
     <%= link_to "Delete", post_content_path(@post, content),
     :data => {:confirm => "Are you sure?",
       :method => "delete"} %>
-    </li>
+
     <% end %>
   </ul>
   <% else %>
   <p> There is no content yet!</p>
   <% end %>
-
-  <p><%= link_to "Add Content", new_post_content_path(@post) %></p>
+  
 <hr>
 <ul>
   <li><%= link_to "Edit Post", edit_post_path %></li>
