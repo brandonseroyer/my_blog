@@ -15,7 +15,29 @@
   <% else %>
   <p> There is no content yet!</p>
   <% end %>
-  
+  <p><%= link_to "Add New Content", new_post_content_path(@post) %></p>
+
+  <hr>
+    <% if @post.comments.any? %>
+    <ul>
+      <% @comments.each do |comment| %>
+      <li>
+        <%= comment.text %>
+        <% if current_user.id == @post.user_id %>
+        <%= link_to "Edit", edit_post_comment_path(@post, comment) %> |
+        <%= link_to "Delete", post_comment_path(@post, comment),
+        :data => {:confirm => "Are you sure?",
+          :method => "delete"} %>
+          <% end %>
+
+        </li>
+        <% end %>
+      </ul>
+      <% else %>
+      <p>There are no comments yet!</p>
+      <% end %>
+
+      <p><%= link_to "Add an comment", new_post_comment_path(@post) %></p>
 <hr>
 <ul>
   <li><%= link_to "Edit Post", edit_post_path %></li>

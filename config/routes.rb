@@ -6,10 +6,10 @@ Rails.application.routes.draw do
     resources :contents
 
   end
-  resources :contents do
+  resources :posts do
     resources :comments
   end
-  
+
   namespace :admin do
     resources :users
   end

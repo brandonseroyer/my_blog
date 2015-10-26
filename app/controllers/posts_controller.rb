@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
     render :show
   end
 
@@ -50,7 +51,7 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:name)
   end
-  
+
   def find_post
   @post = Post.find(params[:id])
   end

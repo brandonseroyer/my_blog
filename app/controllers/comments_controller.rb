@@ -1,39 +1,31 @@
 class CommentsController < ApplicationController
-    before_action :find_comment, except: [:new, :create, :index]
-    
+  before_action :find_comment, except: [:new, :create, :index]
+
   def new
-
-    @content = Content.find(params[:content_id])
-    @comment = @content.comments.new
-  end
-
-  def show
-    @content = Content.find(params[:content_id])
-    @comment = Comment.find(params[:id])
-    render :show
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.new
   end
 
   def create
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.new(comment_params)
 
-    @content = Content.find(params[:content_id])
-    @comment = @content.comments.new(comment_params)
     if @comment.save
-      redirect_to post_path(@content.post)
+      redirect_to post_path(@comment.post)
     else
       render :new
     end
   end
 
   def edit
-    @content = Content.find(params[:content_id])
-    @comment = @content.comments.find(params[:id])
-    render :edit
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
-    @comment = Comment.find(params[:content_id])
+    @comment = Comment.find(params[:post_id])
     if @comment.update(comment_params)
-      redirect_to contents_path
+      redirect_to posts_path
     else
       render :edit
     end
@@ -42,11 +34,11 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to content_path
+    redirect_to post_path
   end
-end
 
-private
-def comment_params
-  params.require(:comment).permit(:text, :author, :content_id)
+  private
+  def comment_params
+    params.require(:comment).permit(:text, :author, :post_id, :user_id)
+  end
 end
