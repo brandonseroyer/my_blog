@@ -27,7 +27,7 @@ class ContentsController < ApplicationController
   end
 
   def update
-    @content = Content.find(params[:post])
+    @content = Content.find(params[:post_id])
     if @content.update(content_params)
       redirect_to posts_path
     else

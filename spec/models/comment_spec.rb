@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Commment do
+describe Comment do
 
   it {should validate_presence_of :text}
   it {should belong_to :post}
